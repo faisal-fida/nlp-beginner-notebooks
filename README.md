@@ -1,39 +1,32 @@
-# NLP Classification and QnA for Beginners
+# nlp-classification-text-generation-notebooks
 
-This project contains two Jupyter notebooks focused on natural language processing (NLP) tasks: text classification and text generation. The notebooks explore different techniques and models for handling these tasks, offering insights into common challenges and solutions.
+Two small beginner Jupyter notebooks: text classification with scikit-learn and a word-level text generation attempt with TensorFlow.
 
-## Project Structure
+## Notebooks
 
-- **NLP Classification.ipynb**: Demonstrates text classification using a linear classifier.
-- **NLP QnA.ipynb**: Focuses on text generation using a recurrent neural network (RNN).
+- `NLP Classification.ipynb`: classifies 20 hand-written sentences into two labels (0/1). Pipeline: `CountVectorizer`, `TfidfTransformer`, `SGDClassifier`. Splits 80/20, prints accuracy, then predicts one new sentence.
+- `NLP QnA.ipynb`: builds a word vocabulary from 10 short machine learning titles and defines a `generate_text` function that samples next words from a model.
 
-## Complexities and Solutions
+## Status
 
-### Text Classification
-- **Complexity**: Handling various text preprocessing steps, feature extraction, and model training.
-- **Solution**: Utilizes `CountVectorizer` and `TfidfTransformer` for feature extraction and `SGDClassifier` for classification.
-- **Challenge**: Achieving high accuracy on a small dataset.
-- **Outcome**: Model accuracy is 25%, indicating room for improvement with more data and tuning.
+Teaching-level toy examples, not working models.
 
-### Text Generation
-- **Complexity**: Preprocessing text data, creating a vocabulary, converting texts to sequences, and training an RNN model.
-- **Solution**: Implements text preprocessing using regular expressions and word indexing, followed by sequence generation using a trained model.
-- **Challenge**: Generating coherent and contextually relevant text.
-- **Outcome**: The model generates text based on given prompts, demonstrating the fundamental process of text generation.
+- Classification: the sentences and the labels are split by two separate `train_test_split` calls without a shared seed, so training texts and labels do not line up. Accuracy on the tiny set is therefore meaningless (the saved notebook output shows 0.25).
+- Text generation: the notebook never defines or trains the RNN `model` it uses, and `generate_text` maps words back with the wrong dictionary direction. Running the last cells fails with a `NameError`. Despite the file name, it does no question answering.
 
-## How to Run the Project
+## Tech stack
 
-1. Clone the repository:
-   ```sh
-   git clone https://github.com/faisal-fida/NLP-Classification-QnA-for-Beginners.git
-   ```
-2. Navigate to the project directory and open the Jupyter notebooks:
-   ```sh
-   cd NLP-Classification-QnA-for-Beginners
-   jupyter notebook
-   ```
-3. Run the cells in each notebook to execute the code and observe the results.
+Python 3, Jupyter, scikit-learn, NumPy, TensorFlow.
 
-## Conclusion
+## Setup and run
 
-This project serves as an introductory exploration of NLP techniques, addressing key complexities and challenges in text classification and generation. Future work could involve expanding the dataset, experimenting with different models, and fine-tuning hyperparameters to improve performance.
+```bash
+pip install jupyter scikit-learn numpy tensorflow
+jupyter notebook
+```
+
+Open a notebook and run the cells top to bottom. No environment variables or data files are needed.
+
+## License
+
+MIT
